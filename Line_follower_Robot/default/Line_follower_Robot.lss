@@ -1,0 +1,193 @@
+
+Line_follower_Robot.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000e8  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  0000013c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 0000001b  00000000  00000000  0000015c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   00000098  00000000  00000000  00000177  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 0000005f  00000000  00000000  0000020f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   000000df  00000000  00000000  0000026e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000020  00000000  00000000  00000350  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    000000c5  00000000  00000000  00000370  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    00000028  00000000  00000000  00000435  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 ee       	ldi	r30, 0xE8	; 232
+  68:	f0 e0       	ldi	r31, 0x00	; 0
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 72 00 	jmp	0xe4	; 0xe4 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+#include <util/delay.h>   // include delay header file
+
+
+int main(void)  		  // main function
+{
+DDRA=0b00000000;          // declare PortA as a input port connected to the sensors
+  92:	1a ba       	out	0x1a, r1	; 26
+DDRB=0b11111111;          // declare PortB as a output port connected to the motors
+  94:	8f ef       	ldi	r24, 0xFF	; 255
+  96:	87 bb       	out	0x17, r24	; 23
+        PORTB=0b00001001;  // move straight
+		}
+			
+	if((left_sensor==0b00000000) && (right_sensor==0b00100000)) 	// if left sensor off but right sensor on
+        {
+		PORTB=0b00000001; // turn left
+  98:	e1 e0       	ldi	r30, 0x01	; 1
+		PORTB=0b00000000;   // stop	
+		}
+
+    if((left_sensor==0b00010000) && (right_sensor==0b00100000))     // if both sensors "on"
+		{
+        PORTB=0b00001001;  // move straight
+  9a:	79 e0       	ldi	r23, 0x09	; 9
+		PORTB=0b00000001; // turn left
+        }
+
+	if((left_sensor==0b00010000)&(right_sensor==0b00000000))  ////if left sensor on but right sensor off
+        {
+		PORTB=0b00001000; // turn right
+  9c:	68 e0       	ldi	r22, 0x08	; 8
+
+int left_sensor=0, right_sensor=0;
+
+while(1) // infinite loop
+	{
+	left_sensor=PINA&0b00010000;    // mask PA4 bit of Port A
+  9e:	89 b3       	in	r24, 0x19	; 25
+  a0:	90 e0       	ldi	r25, 0x00	; 0
+	right_sensor=PINA&0b00100000;   // mask PA5 bit of Port A
+  a2:	29 b3       	in	r18, 0x19	; 25
+  a4:	30 e0       	ldi	r19, 0x00	; 0
+  a6:	20 72       	andi	r18, 0x20	; 32
+  a8:	30 70       	andi	r19, 0x00	; 0
+	 
+	 
+	if((left_sensor==0b00000000) && (right_sensor==0b00000000))     // if both sensors "off"
+  aa:	ac 01       	movw	r20, r24
+  ac:	40 71       	andi	r20, 0x10	; 16
+  ae:	50 70       	andi	r21, 0x00	; 0
+  b0:	84 fd       	sbrc	r24, 4
+  b2:	05 c0       	rjmp	.+10     	; 0xbe <main+0x2c>
+  b4:	21 15       	cp	r18, r1
+  b6:	31 05       	cpc	r19, r1
+  b8:	51 f4       	brne	.+20     	; 0xce <main+0x3c>
+		{
+		PORTB=0b00000000;   // stop	
+  ba:	18 ba       	out	0x18, r1	; 24
+  bc:	0c c0       	rjmp	.+24     	; 0xd6 <main+0x44>
+		}
+
+    if((left_sensor==0b00010000) && (right_sensor==0b00100000))     // if both sensors "on"
+  be:	40 31       	cpi	r20, 0x10	; 16
+  c0:	51 05       	cpc	r21, r1
+  c2:	49 f4       	brne	.+18     	; 0xd6 <main+0x44>
+  c4:	20 32       	cpi	r18, 0x20	; 32
+  c6:	31 05       	cpc	r19, r1
+  c8:	31 f4       	brne	.+12     	; 0xd6 <main+0x44>
+		{
+        PORTB=0b00001001;  // move straight
+  ca:	78 bb       	out	0x18, r23	; 24
+  cc:	04 c0       	rjmp	.+8      	; 0xd6 <main+0x44>
+		}
+			
+	if((left_sensor==0b00000000) && (right_sensor==0b00100000)) 	// if left sensor off but right sensor on
+  ce:	20 32       	cpi	r18, 0x20	; 32
+  d0:	31 05       	cpc	r19, r1
+  d2:	09 f4       	brne	.+2      	; 0xd6 <main+0x44>
+        {
+		PORTB=0b00000001; // turn left
+  d4:	e8 bb       	out	0x18, r30	; 24
+        }
+
+	if((left_sensor==0b00010000)&(right_sensor==0b00000000))  ////if left sensor on but right sensor off
+  d6:	40 31       	cpi	r20, 0x10	; 16
+  d8:	51 05       	cpc	r21, r1
+  da:	09 f7       	brne	.-62     	; 0x9e <main+0xc>
+  dc:	23 2b       	or	r18, r19
+  de:	f9 f6       	brne	.-66     	; 0x9e <main+0xc>
+        {
+		PORTB=0b00001000; // turn right
+  e0:	68 bb       	out	0x18, r22	; 24
+  e2:	dd cf       	rjmp	.-70     	; 0x9e <main+0xc>
+
+000000e4 <_exit>:
+  e4:	f8 94       	cli
+
+000000e6 <__stop_program>:
+  e6:	ff cf       	rjmp	.-2      	; 0xe6 <__stop_program>
